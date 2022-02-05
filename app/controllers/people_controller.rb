@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :authenticate_person!, only: [:edit, :destroy, :update]
+  before_action :authenticate_person!, except: [:index, :show]
   before_action :set_person, only: %i[show edit update destroy]
 
   def index
