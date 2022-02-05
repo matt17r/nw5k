@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <p class="<%= type %>"><%= message %></p>
+    <% end %>
     <%= yield %>
+    <%= button_to "Log out", logout_path, method: :delete if person_signed_in? %>
   </body>
 </html>
