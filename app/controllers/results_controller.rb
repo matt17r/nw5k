@@ -3,7 +3,7 @@ class ResultsController < ApplicationController
   before_action :set_event
 
   def index
-    @results = @event.results
+    @results = @event.results.order(:time)
   end
 
   def show
