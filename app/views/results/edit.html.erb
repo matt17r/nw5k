@@ -1,0 +1,10 @@
+<h1>Editing result</h1>
+
+<%= render "form", result: @result %>
+
+<br>
+
+<div>
+  <%= link_to "Show this result", event_result_path(@event, @result) %> |
+  <%= link_to "Back to results", event_results_path(@event) %>
+</div>

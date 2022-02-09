@@ -1,0 +1,17 @@
+<div id="<%= dom_id result %>">
+  <p>
+    <strong>Person:</strong>
+    <%= result.person || "Unknown" %>
+  </p>
+
+  <p>
+    <strong>Event:</strong>
+    <%= result.event %>
+  </p>
+
+  <p>
+    <strong>Time:</strong>
+    <%= time_as_string(result.time) %>
+  </p>
+
+</div>
