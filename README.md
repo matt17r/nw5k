@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Copy prod data to dev
 
-Things you may want to cover:
+While I can still get away with it, the way to copy prod data to the dev environment is:
 
-* Ruby version
+```sh
+heroku pg:backups:capture
+heroku pg:backups:download
 
-* System dependencies
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -d nw5k_development latest.dump
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rm latest.dump
+``` 
