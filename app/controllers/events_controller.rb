@@ -3,10 +3,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @events = Event.all.order("number DESC").includes(:results)
   end
 
   def show
+    @results = @event.results.order("time ASC").includes(:person)
   end
 
   def new

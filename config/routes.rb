@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   get "login", to: "sessions#new"
   get "course", to: "pages#course"
-  get "results", to: "pages#results"
+  get "results", to: "events#index"
 end
