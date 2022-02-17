@@ -11,10 +11,10 @@
   </head>
 
   <body class="bg-gray-100">
+    <%= render "layouts/header" %>
     <% flash.each do |type, message| %>
       <p class="<%= type %>"><%= message %></p>
     <% end %>
     <%= yield %>
-    <%= button_to "Log out", logout_path, method: :delete if admin_signed_in? %>
   </body>
 </html>
