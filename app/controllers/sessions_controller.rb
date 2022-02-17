@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_person!, only: [:create, :new]
+  skip_before_action :authenticate_admin!, only: [:create, :new]
   before_action :redirect_if_authenticated, only: [:create, :new]
 
   def create
-    @person = Person.find_by(email: params[:person][:email].downcase)
-    if @person&.authenticate(params[:person][:password])
+    @admin = Admin.find_by(email: params[:admin][:email].downcase)
+    if @admin&.authenticate(params[:admin][:password])
       after_login_path = session[:return_to] || root_path
-      login @person
-      remember(@person) if params[:person][:rememember_me] == "1"
+      login @admin
+      remember(@admin) if params[:admin][:rememember_me] == "1"
       redirect_to after_login_path, notice: "Signed in."
     else
       flash.now[:alert] = "Incorrect email or password."
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    forget(current_person)
+    forget(current_admin)
     logout
     redirect_to root_path, notice: "Signed out."
   end

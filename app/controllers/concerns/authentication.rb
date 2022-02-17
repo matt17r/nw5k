@@ -2,24 +2,24 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do
-    before_action :current_person
-    helper_method :current_person
-    helper_method :person_signed_in?
+    before_action :current_admin
+    helper_method :current_admin
+    helper_method :admin_signed_in?
   end
 
-  def authenticate_person!
+  def authenticate_admin!
     store_location
-    redirect_to login_path, alert: "You need to login to access that page." unless person_signed_in?
+    redirect_to login_path, alert: "You need to login to access that page." unless admin_signed_in?
   end
 
-  def forget(person)
+  def forget(admin)
     cookies.delete :remember_token
-    person.regenerate_remember_token
+    admin.regenerate_remember_token
   end
 
-  def login(person)
+  def login(admin)
     reset_session
-    session[:current_person_id] = person.id
+    session[:current_admin_id] = admin.id
   end
 
   def logout
@@ -27,12 +27,12 @@ module Authentication
   end
 
   def redirect_if_authenticated
-    redirect_to root_path, alert: "You are already logged in." if person_signed_in?
+    redirect_to root_path, alert: "You are already logged in." if admin_signed_in?
   end
 
-  def remember(person)
-    person.regenerate_remember_token
-    cookies.permanent.encrypted[:remember_token] = person.remember_token
+  def remember(admin)
+    admin.regenerate_remember_token
+    cookies.permanent.encrypted[:remember_token] = admin.remember_token
   end
 
   def store_location
@@ -41,15 +41,15 @@ module Authentication
 
   private
 
-  def current_person
-    Current.person ||= if session[:current_person_id].present?
-      Person.find_by(id: session[:current_person_id])
+  def current_admin
+    Current.admin ||= if session[:current_admin_id].present?
+      Admin.find_by(id: session[:current_admin_id])
     elsif cookies.permanent.encrypted[:remember_token].present?
-      Person.find_by(remember_token: cookies.permanent.encrypted[:remember_token])
+      Admin.find_by(remember_token: cookies.permanent.encrypted[:remember_token])
     end
   end
 
-  def person_signed_in?
-    Current.person.present?
+  def admin_signed_in?
+    Current.admin.present?
   end
 end

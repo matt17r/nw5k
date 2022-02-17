@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  skip_before_action :authenticate_person!, only: [:index, :show]
+  skip_before_action :authenticate_admin!, only: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index

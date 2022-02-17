@@ -15,6 +15,6 @@
       <p class="<%= type %>"><%= message %></p>
     <% end %>
     <%= yield %>
-    <%= button_to "Log out", logout_path, method: :delete if person_signed_in? %>
+    <%= button_to "Log out", logout_path, method: :delete if admin_signed_in? %>
   </body>
 </html>
