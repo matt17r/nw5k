@@ -13,7 +13,7 @@
       <tbody>
         <% person.results.each do |result| %>
           <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-            <td><%= link_to result.event.number, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td><%= link_to "#{result.event.number} - #{result.event.date}", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td><%= link_to result.place, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td class="text-right"><%= link_to time_as_string(result.time), result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td class="text-left w-4 lg:w-8">
