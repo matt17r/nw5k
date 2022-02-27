@@ -1,37 +1,32 @@
-<div id="<%= dom_id person %>">
-  <p>
-    <strong>Name:</strong>
-    <%= person.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= person.email %>
-  </p>
-
-  <p>
-    <strong>Nickname:</strong>
-    <%= person.nickname %>
-  </p>
-
-  <p>
-    <strong>Emoji:</strong>
-    <%= person.emoji %>
-  </p>
-
-  <p>
-    <strong>Birthdate:</strong>
-    <%= person.birthdate %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= person.country %>
-  </p>
-
-  <p>
-    <strong>Parkrun:</strong>
-    <%= person.parkrun_id %>
-  </p>
-
+<div class="w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
+	<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
+		<h1 class="text-3xl font-medium py-2"><%= person.nickname %> <%= person.emoji %></h1>
+    <h2 class="text-2xl font-medium py-2"><%= "#{pluralize(person.results.count, "event")} completed" %></h2>
+    <table class="table-auto w-full my-4">
+      <thead>
+        <tr class="bg-purple-400 text-xl font-medium text-center">
+          <th class="py-2 px-4 w-1/3">Event</th>
+          <th class="py-2 px-4 w-1/3">Place</th>
+          <th colspan="2" class="py-2 px-4 w-1/3">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% person.results.each do |result| %>
+          <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
+            <td><%= link_to result.event.number, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td><%= link_to result.place, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td class="text-right"><%= link_to time_as_string(result.time), result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td class="text-left w-4 lg:w-8">
+              <% if result.pb? %>
+                <div class="has-tooltip">
+                  <%= link_to "🔔", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %>
+                  <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300">NW5k Personal Best</span>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+	</div>
 </div>
