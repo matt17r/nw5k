@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by number: params[:number]
   end
 
   def event_params

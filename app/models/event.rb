@@ -7,4 +7,8 @@ class Event < ApplicationRecord
   def to_s
     "#{number} - #{date}"
   end
+
+  def to_param
+    number.to_s
+  end
 end

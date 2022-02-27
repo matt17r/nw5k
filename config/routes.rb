@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "pages#welcome"
-  resources :events do
+  resources :events, param: :number do
     resources :results
   end
   resources :people do
