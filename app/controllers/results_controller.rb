@@ -50,6 +50,6 @@ class ResultsController < ApplicationController
   end
 
   def result_params
-    params.require(:result).permit(:person_id, :event_id, :time)
+    params.require(:result).permit(:person_id, :event_id, :time_string)
   end
 end

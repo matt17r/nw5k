@@ -17,7 +17,7 @@
             <td><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td><%= link_to event.date, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td><%= link_to time_as_string(event.results.first&.time), event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td><%= link_to event.results.first&.time_string, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
           </tr>
         <% end %>
       </tbody>

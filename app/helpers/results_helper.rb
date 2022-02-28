@@ -1,10 +1,7 @@
 module ResultsHelper
-  MAXIMUM_TIME = (2.hours.to_i - 1).freeze
+  MAXIMUM_TIME = 7200.freeze # 2 hours
   MINIMUM_TIME = 755.freeze # 5000m world record on a track
 
-  def time_as_string(time)
-    return "Unknown" unless time
-    format_string = (time < 3600 ? "%M:%S" : "%H:%M:%S")
-    Time.at(time).utc.strftime(format_string)
-  end
+  MAXIMUM_TIME_STRING = Time.at(MAXIMUM_TIME).utc.strftime("%k:%M:%S").freeze
+  MINIMUM_TIME_STRING = Time.at(MINIMUM_TIME).utc.strftime("%M:%S").freeze
 end
