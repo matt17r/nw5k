@@ -149,6 +149,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-mini-profiler (3.0.0)
+      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.1)
@@ -255,6 +257,7 @@ DEPENDENCIES
   jsbundling-rails
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-mini-profiler
   rails (~> 7.0.1)
   redis (~> 4.0)
   selenium-webdriver
