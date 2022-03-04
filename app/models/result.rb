@@ -1,5 +1,5 @@
 class Result < ApplicationRecord
-  HOUR_MINUTES_SECONDS_REGEXP = /\A((?<hours>([0-9]?[0-9])):)?(?<minutes>([0-5]?[0-9])):(?<seconds>([0-5]?[0-9]))\z/.freeze
+  HOUR_MINUTES_SECONDS_REGEXP = /\A(?:(?<hours>[0-9]?[0-9]):)?(?<minutes>[0-5]?[0-9]):(?<seconds>[0-5]?[0-9])\z/
   belongs_to :person, optional: true
   belongs_to :event
 
@@ -28,7 +28,10 @@ class Result < ApplicationRecord
   end
 
   def time_string=(input)
-    return self.time = nil if input.blank?
+    if input.blank?
+      self.time = nil
+      return
+    end
     matches = HOUR_MINUTES_SECONDS_REGEXP.match(input.strip)
     raise ArgumentError if matches.nil?
     seconds = matches[:hours].to_i * 3600 + matches[:minutes].to_i * 60 + matches[:seconds].to_i
