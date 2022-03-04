@@ -1,5 +1,17 @@
 # README
 
+## Getting started
+
+Copy .env file and populate required settings (values can be found using `heroku config:get`)
+
+```sh
+cp .env.template .env
+
+# Access each variable listed in .env to replace the template placeholder
+# e.g.
+heroku config:get CLOUDMAILIN_HOST
+```
+
 ## Copy prod data to dev
 
 While I can still get away with it, the way to copy prod data to the dev environment is:
