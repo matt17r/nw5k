@@ -1,6 +1,7 @@
 <div class="w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
 	<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
-		<h1 class="text-3xl font-medium py-2"><%= "Event #{@event.number} - #{@event.date}" %></h1>
+		<h1 class="text-3xl font-medium py-2"><%= "Event #{@event.number} - #{@event.date.to_fs(:medium)}" %></h1>
+		<h2 class="text-xl font-medium py-2"><%= link_to "Previous Weeks", events_path %></h2>
     <table class="table-auto w-full my-4">
       <thead>
         <tr class="bg-purple-400 text-xl font-medium text-center">

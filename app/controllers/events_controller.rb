@@ -10,6 +10,12 @@ class EventsController < ApplicationController
     @results = @event.results.order("time ASC").includes(:person)
   end
 
+  def show_latest
+    @event = Event.order("number DESC").first
+    @results = @event.results.order("time ASC").includes(:person)
+    render :show
+  end
+
   def new
     @event = Event.new
   end
