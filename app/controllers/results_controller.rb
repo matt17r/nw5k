@@ -22,7 +22,7 @@ class ResultsController < ApplicationController
     @result = @event.results.new(result_params)
 
     if @result.save
-      redirect_to event_result_url(@event, @result), notice: "Result was successfully created."
+      redirect_to event_results_url(@event), notice: "Result was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class ResultsController < ApplicationController
   def update
     @result = @event.results.find(params[:id])
     if @result.update(result_params)
-      redirect_to event_result_url(@event, @result), notice: "Result was successfully updated."
+      redirect_to event_results_url(@event), notice: "Result was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
