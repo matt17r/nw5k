@@ -13,8 +13,17 @@
 
   <body class="bg-gray-100">
     <%= render "layouts/header" %>
-    <% flash.each do |type, message| %>
-      <p class="<%= type %>"><%= message %></p>
+    <% Banner.current.each do |banner| %>
+      <div class="container mx-auto pt-8 px-4 md:px-6 w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2">
+          <div class="flex items-strech justify-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8">
+              <div class="flex flex-col md:flex-row items-strech justify-between bg-purple-600 py-6 px-6 rounded-lg">
+                  <div class="flex flex-col justify-center">
+                      <h1 class="text-3xl lg:text-3xl font-semibold text-gray-100"><%= banner.title %></h1>
+                      <p class="text-base lg:text-xl text-gray-100 mt-2"><%= raw sanitize banner.body, tags: %w(strong em b i del strike) %></p>
+                  </div>
+              </div>
+          </div>
+      </div>
     <% end %>
     <%= yield %>
   </body>
