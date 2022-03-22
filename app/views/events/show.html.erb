@@ -17,7 +17,12 @@
             <td class="text-left"><%= link_to result.person || "Unknown", result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
 						<td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
             <td class="text-left w-4 lg:w-8">
-              <% if result.pb? %>
+							<% if result.first_timer? %>
+                <div class="has-tooltip">
+                  <%= link_to "👋", result.person, class: "no-underline text-gray-800 hover:text-purple-800" %>
+                  <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300">1st Timer</span>
+                </div>
+              <% elsif result.pb? %>
                 <div class="has-tooltip">
                   <%= link_to "🔔", result.person, class: "no-underline text-gray-800 hover:text-purple-800" %>
                   <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300">NW5k Personal Best</span>

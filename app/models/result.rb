@@ -22,6 +22,12 @@ class Result < ApplicationRecord
     time && previous_best && time < previous_best
   end
 
+  def first_timer?
+    return false unless person
+    first_result = person.results.joins(:event).order(number: :asc).first
+    self === first_result
+  end
+
   def time_string
     return "Unknown" unless time
     format_string = (time < 3600 ? "%M:%S" : "%k:%M:%S")
