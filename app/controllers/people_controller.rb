@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   skip_before_action :authenticate_admin!, only: [:show]
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :send_welcome_mail]
 
   def index
     @people = Person.all
@@ -37,6 +37,11 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     redirect_to people_url, notice: "Person was successfully destroyed."
+  end
+
+  def send_welcome_mail
+    PeopleMailer.with(person: @person).welcome_email.deliver_later
+    redirect_to edit_person_path(@person), notice: "Welcome email has been queued"
   end
 
   private

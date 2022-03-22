@@ -107,6 +107,10 @@ GEM
       reline (>= 0.3.0)
     jsbundling-rails (1.0.0)
       railties (>= 6.0.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -227,6 +231,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    unicode-emoji (3.1.0)
+      unicode-version (~> 1.0)
+    unicode-version (1.2.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -255,6 +262,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   jsbundling-rails
+  letter_opener
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler
@@ -266,6 +274,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  unicode-emoji
   web-console
   webdrivers
 
