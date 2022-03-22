@@ -13,6 +13,10 @@ class Person < ApplicationRecord
     "#{emoji} #{nickname}"
   end
 
+  def reverse_chronological_results
+    self.results.joins(:event).order(date: :desc)
+  end
+
   private
 
   def downcase_email

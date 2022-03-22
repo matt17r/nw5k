@@ -18,8 +18,9 @@ class Result < ApplicationRecord
 
   def pb?
     return false unless person
-    previous_best = person.results.order(:time).joins(:event).where("events.number < ?", event.number).first&.time
-    time && previous_best && time < previous_best
+    return false if first_timer?
+    previous_best = person.results.joins(:event).where("events.number < ?", event.number).order(:time).first&.time
+    time && (previous_best && time < previous_best) || time && !previous_best
   end
 
   def first_timer?
