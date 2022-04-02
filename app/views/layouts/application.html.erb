@@ -19,7 +19,7 @@
               <div class="flex flex-col md:flex-row items-strech justify-between bg-purple-600 py-6 px-6 rounded-lg">
                   <div class="flex flex-col justify-center">
                       <h1 class="text-3xl lg:text-3xl font-semibold text-gray-100"><%= banner.title %></h1>
-                      <p class="text-base lg:text-xl text-gray-100 mt-2"><%= raw sanitize banner.body, tags: %w(strong em b i del strike) %></p>
+                      <p class="text-base lg:text-xl text-gray-100 mt-2"><%= raw sanitize banner.body, tags: %w(strong em b i del strike br) %></p>
                   </div>
               </div>
           </div>
