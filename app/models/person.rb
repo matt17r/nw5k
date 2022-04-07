@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
+  PROBLEMATIC_EMOJI_IN_UNICODE_EMOJI_GEM_V3_1_0 = ["👨‍👩‍👧‍👦", "👨‍👩‍👦‍👦", "👨‍👩‍👧‍👧", "👨‍👨‍👧‍👦", "👨‍👨‍👦‍👦", "👨‍👨‍👧‍👧", "👩‍👩‍👧‍👦", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👧", "👨‍👦‍👦", "👨‍👧‍👦", "👨‍👧‍👧", "👩‍👦‍👦", "👩‍👧‍👦", "👩‍👧‍👧"]
+
   before_validation :strip_spaces
   before_save :downcase_email
 
@@ -30,8 +32,8 @@ class Person < ApplicationRecord
   end
 
   def emoji_recommended
-    puts "\n#{emoji.scan(Unicode::Emoji::REGEX_VALID)} -> #{emoji.scan(Unicode::Emoji::REGEX)}:\n\tLength:\t\t#{emoji.length}\n\tMatch length:\t#{emoji.scan(Unicode::Emoji::REGEX).length}"
-    if emoji.present? && emoji.scan(Unicode::Emoji::REGEX_VALID).length > emoji.scan(Unicode::Emoji::REGEX).length
+    return if PROBLEMATIC_EMOJI_IN_UNICODE_EMOJI_GEM_V3_1_0.include? emoji # Temporary short circuit on problematic emoji - https://github.com/janlelis/unicode-emoji/issues/12
+    if emoji.present? && emoji.scan(Unicode::Emoji::REGEX_VALID).present? && emoji.scan(Unicode::Emoji::REGEX_VALID)[0].length > emoji.scan(Unicode::Emoji::REGEX)[0].length
       errors.add(:emoji, "is a valid sequence but is not a recommended combination")
     end
   end
@@ -41,4 +43,5 @@ class Person < ApplicationRecord
     self.email = email&.strip
     self.emoji = emoji&.strip
   end
+
 end
