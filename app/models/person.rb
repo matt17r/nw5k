@@ -49,6 +49,7 @@ class Person < ApplicationRecord
   def strip_spaces
     self.name = name&.strip
     self.email = email&.strip
+    self.nickname = nickname&.strip
     self.emoji = emoji&.strip
   end
 
