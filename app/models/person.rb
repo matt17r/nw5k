@@ -12,6 +12,7 @@ class Person < ApplicationRecord
   validates :emoji, allow_blank: true, format: {with: Unicode::Emoji::REGEX_VALID, message: EMOJI_REQUIREMENTS}
   validate :single_emoji_only
   validate :recommended_emoji_only
+  validate :public_representation_present
 
   has_secure_password
   has_secure_token :remember_token
@@ -36,6 +37,12 @@ class Person < ApplicationRecord
     return if PROBLEMATIC_EMOJI_IN_UNICODE_EMOJI_GEM_V3_1_0.include? emoji # Temporary short circuit on problematic emoji - https://github.com/janlelis/unicode-emoji/issues/12
     if emoji.present? && emoji.scan(Unicode::Emoji::REGEX_VALID).present? && emoji.scan(Unicode::Emoji::REGEX_VALID)[0].length > emoji.scan(Unicode::Emoji::REGEX)[0].length
       errors.add(:emoji, EMOJI_REQUIREMENTS)
+    end
+  end
+
+  def public_representation_present
+    unless nickname.present? || emoji.present?
+      errors.add(:nickname, :nickname_and_emoji_blank, message: "or Emoji must be provided (or you can specify both)")
     end
   end
 
