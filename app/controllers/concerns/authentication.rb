@@ -43,6 +43,8 @@ module Authentication
     puts "  request.get? = #{request.get?}"
     puts "  request.local? = #{request.local?}"
     puts("*" * 30)
+    puts "request.inspect"
+    puts("*" * 30)
   end
 
   private
