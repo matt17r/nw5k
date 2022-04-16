@@ -9,6 +9,10 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <style>
+      .field_with_errors { color: #b22; }
+      .field_with_errors input { background-color: #fcc; }
+    </style>
   </head>
 
   <body class="bg-gray-100">

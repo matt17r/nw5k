@@ -8,11 +8,11 @@ class Person < ApplicationRecord
   has_many :results
 
   validates :name, presence: true
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP, message: "must contain a correctly formatted email address"}
+  validates :email, allow_blank: true, format: {with: URI::MailTo::EMAIL_REGEXP, message: "must contain a correctly formatted email address"}
   validates :emoji, allow_blank: true, format: {with: Unicode::Emoji::REGEX_VALID, message: EMOJI_REQUIREMENTS}
   validate :single_emoji_only
   validate :recommended_emoji_only
-  validate :public_representation_present
+  validate :public_representation_present?
 
   has_secure_password
   has_secure_token :remember_token
@@ -40,9 +40,11 @@ class Person < ApplicationRecord
     end
   end
 
-  def public_representation_present
+  def public_representation_present?
     unless nickname.present? || emoji.present?
-      errors.add(:nickname, :nickname_and_emoji_blank, message: "or Emoji must be provided (or you can specify both)")
+      errors.add(:base, :nickname_and_emoji_blank, message: "At least one of User name and Email must be provided")
+      errors.add(:nickname, :hide_message_but_highlight_field)
+      errors.add(:emoji, :hide_message_but_highlight_field)
     end
   end
 
