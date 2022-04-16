@@ -37,6 +37,10 @@ module Authentication
 
   def store_location
     session[:return_to] = request.original_url if request.get? && request.local?
+    puts "store_location:"
+    puts "/tsession[:return_to] = #{session[:return_to]}"
+    puts "/trequest.get? = #{request.get?}"
+    puts "/trequest.local? = #{request.local?}"
   end
 
   private

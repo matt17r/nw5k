@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   def create
     @admin = Admin.find_by(email: params[:admin][:email].downcase)
     if @admin&.authenticate(params[:admin][:password])
-      after_login_path = session[:return_to] || root_path
       login @admin
       remember(@admin) if params[:admin][:rememember_me] == "1"
-      redirect_to after_login_path, notice: "Signed in."
+      puts "SessionsController.create:"
+      puts "/tsession[:return_to] = #{session[:return_to]}"
+      redirect_to session[:return_to] || root_path, notice: "Signed in."
     else
       flash.now[:alert] = "Incorrect email or password."
       render :new, status: :unprocessable_entity
