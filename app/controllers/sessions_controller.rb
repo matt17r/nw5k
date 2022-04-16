@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
       cached_after_login_path = session[:return_to] || root_path
       login @admin
       remember(@admin) if params[:admin][:rememember_me] == "1"
-      puts "SessionsController.create:"
-      puts "cached_after_login_path = #{cached_after_login_path}"
       redirect_to cached_after_login_path, notice: "Signed in."
     else
       flash.now[:alert] = "Incorrect email or password."
