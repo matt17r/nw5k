@@ -27,7 +27,7 @@ module Authentication
   end
 
   def redirect_if_authenticated
-    redirect_to root_path, alert: "You are already logged in." if admin_signed_in?
+    redirect_to session[:return_to] || root_path, alert: "You are already logged in." if admin_signed_in?
   end
 
   def remember(admin)
@@ -36,16 +36,7 @@ module Authentication
   end
 
   def store_location
-    session[:return_to] = request.original_url if request.get? && request.local?
-    puts("*" * 30)
-    puts "store_location:"
-    puts "  session[:return_to] = #{session[:return_to]}"
-    puts "  request.get? = #{request.get?}"
-    puts "  request.local? = #{request.local?}"
-    puts("*" * 30)
-    puts "request.headers[:REMOTE_ADDR]:"
-    puts request.headers[:REMOTE_ADDR]
-    puts("*" * 30)
+    session[:return_to] = request.original_url if request.get?
   end
 
   private
