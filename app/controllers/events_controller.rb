@@ -28,7 +28,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to @event, notice: "Event was successfully created."
+      redirect_to new_event_result_url(@event), notice: "Event was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
