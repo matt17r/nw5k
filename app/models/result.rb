@@ -36,7 +36,7 @@ class Result < ApplicationRecord
   end
 
   def time_string=(input)
-    if input.blank?
+    if input.blank? || input == "Unknown"
       self.time = nil
       return
     end
