@@ -17,7 +17,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    event_num = Event.maximum(:number).next
+    @event = Event.new(number: event_num)
   end
 
   def edit
