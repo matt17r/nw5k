@@ -1,14 +1,14 @@
 <div class="w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
 	<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
-		<h1 class="text-3xl font-medium py-2">Weekly Results</h1>
-    <p>Click on a row to see all results for that week.</p>
+		<h1 class="text-3xl font-medium py-2"><%= t("nw5k.past_results") %></h1>
+    <p><%= t("nw5k.event_list_instructions") %></p>
     <table class="table-auto w-full my-4">
       <thead>
         <tr class="bg-purple-400 text-xl font-medium text-center">
-          <th>Event Number</th>
-          <th>Date</th>
-          <th>Participants</th>
-          <th>Fastest Time</th>
+          <th><%= t("nw5k.event_number") %></th>
+          <th><%= t("nw5k.event_date") %></th>
+          <th><%= t("nw5k.participants") %></th>
+          <th><%= t("nw5k.fastest_time") %></th>
         </tr>
       </thead>
       <tbody>
