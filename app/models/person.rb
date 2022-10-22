@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   before_save :downcase_email
 
   has_many :results
+  has_many :volunteers
 
   validates :name, presence: true
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true
