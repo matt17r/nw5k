@@ -1,0 +1,10 @@
+<h1>Editing volunteer</h1>
+
+<%= render "form", volunteer: @volunteer %>
+
+<br>
+
+<div>
+  <%= link_to "Show this volunteer", event_volunteer_path(@event, @volunteer) %> |
+  <%= link_to "Back to volunteers", event_volunteers_path(@event) %>
+</div>

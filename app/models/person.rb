@@ -17,6 +17,10 @@ class Person < ApplicationRecord
   def reverse_chronological_results
     self.results.joins(:event).order(date: :desc)
   end
+  
+  def reverse_chronological_volunteers
+    self.volunteers.joins(:event).order(date: :desc)
+  end
 
   private
 

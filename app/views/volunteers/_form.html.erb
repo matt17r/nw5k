@@ -1,0 +1,32 @@
+<%= form_with(model: [@event, volunteer]) do |form| %>
+  <% if volunteer.errors.any? %>
+    <div class="text-red-700">
+      <h2><%= pluralize(volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
+
+      <ul>
+        <% volunteer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :person, class: "block" %>
+    <%= collection_select(:volunteer, :person_id, Person.all, :id, :name, prompt: true) %>
+  </div>
+
+  <div>
+    <%= form.label :event, class: "block" %>
+    <%= collection_select(:volunteer, :event_id, Event.all, :id, :to_s, prompt: true) %>
+  </div>
+
+  <div>
+    <%= form.label :role, class: "block" %>
+    <%= form.text_field :role %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

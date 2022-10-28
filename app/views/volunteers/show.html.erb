@@ -1,0 +1,8 @@
+<%= render @volunteer %>
+
+<div>
+  <%= link_to "Edit this volunteer", edit_event_volunteer_path(@event, @volunteer) %> |
+  <%= link_to "Back to volunteers", event_volunteers_path(@event) %>
+
+  <%= button_to "Destroy this volunteer", event_volunteer_path(@event, @volunteer), method: :delete %>
+</div>
