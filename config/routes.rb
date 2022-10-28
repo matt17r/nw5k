@@ -3,10 +3,9 @@ Rails.application.routes.draw do
     root to: "pages#welcome"
     resources :events, param: :number do
       resources :results
+      resources :volunteers
     end
-    resources :people do
-      resources :results, only: :index
-    end
+    resources :people
     resources :banners
     post "login", to: "sessions#create"
     delete "logout", to: "sessions#destroy"

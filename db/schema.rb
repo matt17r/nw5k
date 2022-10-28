@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_062520) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_092155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,18 +19,18 @@ ActiveRecord::Schema.define(version: 2022_03_22_062520) do
     t.string "email"
     t.string "password_digest", null: false
     t.string "remember_token", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email"
   end
 
   create_table "banners", force: :cascade do |t|
     t.string "title", null: false
     t.string "body"
-    t.datetime "publish_at", precision: 6, null: false
-    t.datetime "withdraw_at", precision: 6, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "publish_at", null: false
+    t.datetime "withdraw_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["publish_at"], name: "index_banners_on_publish_at"
     t.index ["withdraw_at"], name: "index_banners_on_withdraw_at"
   end
@@ -39,8 +38,8 @@ ActiveRecord::Schema.define(version: 2022_03_22_062520) do
   create_table "events", force: :cascade do |t|
     t.date "date", null: false
     t.integer "number", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["number"], name: "index_events_on_number", unique: true
   end
 
@@ -54,8 +53,8 @@ ActiveRecord::Schema.define(version: 2022_03_22_062520) do
     t.date "birthdate"
     t.string "country"
     t.string "parkrun_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_people_on_email"
     t.index ["nickname"], name: "index_people_on_nickname"
     t.index ["parkrun_id"], name: "index_people_on_parkrun_id"
@@ -66,12 +65,24 @@ ActiveRecord::Schema.define(version: 2022_03_22_062520) do
     t.bigint "person_id"
     t.bigint "event_id", null: false
     t.integer "time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_results_on_event_id"
     t.index ["person_id"], name: "index_results_on_person_id"
   end
 
+  create_table "volunteers", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "event_id", null: false
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_volunteers_on_event_id"
+    t.index ["person_id"], name: "index_volunteers_on_person_id"
+  end
+
   add_foreign_key "results", "events"
   add_foreign_key "results", "people"
+  add_foreign_key "volunteers", "events"
+  add_foreign_key "volunteers", "people"
 end

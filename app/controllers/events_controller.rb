@@ -3,16 +3,18 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all.order("number DESC").includes(:results)
+    @events = Event.all.order(number: :desc).includes(:results)
   end
 
   def show
-    @results = @event.results.order("time ASC").includes(:person)
+    @results = @event.results.order(:time).includes(:person)
+    @volunteers = @event.volunteers.order(:role).includes(:person)
   end
 
   def show_latest
-    @event = Event.order("number DESC").first
-    @results = @event.results.order("time ASC").includes(:person)
+    @event = Event.order(number: :desc).first
+    @results = @event.results.order(:time).includes(:person)
+    @volunteers = @event.volunteers.order(:role).includes(:person)
     render :show
   end
 

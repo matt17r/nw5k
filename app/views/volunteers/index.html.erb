@@ -1,0 +1,14 @@
+<h1>Volunteers</h1>
+
+<div id="volunteers">
+  <% @volunteers.each do |volunteer| %>
+    <%= render volunteer %>
+    <p>
+      <%= link_to "Show this volunteer", event_volunteer_path(volunteer.event, volunteer) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New volunteer", new_event_volunteer_path %>
+<br>
+<%= link_to "New result", new_event_result_path %>

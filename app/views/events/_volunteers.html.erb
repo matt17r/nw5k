@@ -1,0 +1,12 @@
+<h2 class="text-xl font-medium py-2"><%= t("nw5k.volunteers") %></h2>
+
+<div><%= t("nw5k.thanks_to_volunteers") %>
+  <dl>
+    <% volunteers.each do |volunteer| %>
+      <div class="px-2 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 text-lg hover:bg-purple-200 hover:text-purple-800">
+        <dt class="font-medium"><%= link_to volunteer.role, person_path(volunteer.person, anchor: "volunteering"), class: "no-underline text-gray-800 hover:text-purple-800" %></dt>
+        <dd class="mt-1 sm:col-span-2 sm:mt-0"><%= link_to volunteer.person, person_path(volunteer.person, anchor: "volunteering"), class: "no-underline text-gray-800 hover:text-purple-800" %></dd>
+      </div>
+    <% end %>
+  </dl>
+</div>

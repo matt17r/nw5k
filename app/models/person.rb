@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   before_save :downcase_email
 
   has_many :results
+  has_many :volunteers
 
   validates :name, presence: true
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true
@@ -15,6 +16,10 @@ class Person < ApplicationRecord
 
   def reverse_chronological_results
     self.results.joins(:event).order(date: :desc)
+  end
+  
+  def reverse_chronological_volunteers
+    self.volunteers.joins(:event).order(date: :desc)
   end
 
   private
