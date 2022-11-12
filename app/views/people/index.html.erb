@@ -2,9 +2,13 @@
 
 <div id="people">
   <% @people.each do |person| %>
-    <%= render person %>
+    <h1 class="text-3xl font-medium py-2"><%= person.nickname %> <%= person.emoji %></h1>
+    <h2 class="text-2xl font-medium py-2"><%= t("nw5k.events_completed", count: person.results.count) %></h2>
     <p>
       <%= link_to "Show this person", person %>
+    </p>
+    <p>
+      <%= link_to "Edit this person", edit_person_path(person) %>
     </p>
   <% end %>
 </div>

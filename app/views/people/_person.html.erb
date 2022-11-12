@@ -1,57 +1,55 @@
-<div class="w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
-	<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
-		<h1 class="text-3xl font-medium py-2"><%= person.nickname %> <%= person.emoji %></h1>
-    <h2 class="text-2xl font-medium py-2"><%= t("nw5k.events_completed", count: person.results.count) %></h2>
+<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
+	<h1 class="text-3xl font-medium py-2"><%= person.nickname %> <%= person.emoji %></h1>
+  <h2 class="text-2xl font-medium py-2"><%= t("nw5k.events_completed", count: person.results.count) %></h2>
+  <table class="table-auto w-full my-4">
+    <thead>
+      <tr class="bg-purple-400 text-xl font-medium text-center">
+        <th class="py-2 px-4 w-1/3"><%= Event.model_name.human %></th>
+        <th class="py-2 px-4 w-1/3"><%= t("nw5k.place") %></th>
+        <th colspan="2" class="py-2 px-4 w-1/3"><%= t("nw5k.time") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% person.reverse_chronological_results.each do |result| %>
+        <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
+          <td><%= link_to "#{result.event.number} - #{result.event.date.to_fs(:short)}", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td><%= link_to result.place, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td class="text-right"><%= link_to result.time_string, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td class="text-left w-4 lg:w-8">
+						<% if result.first_timer? %>
+              <div class="has-tooltip">
+                <%= link_to "👋", result.person, class: "no-underline text-gray-800 hover:text-purple-800" %>
+                <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></span>
+              </div>
+            <% elsif result.pb? %>
+              <div class="has-tooltip">
+                <%= link_to "🔔", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %>
+                <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb") %></span>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if person.volunteers.count > 0 %>
+    <h2 id="volunteering" class="text-2xl font-medium py-2"><%= t("nw5k.events_volunteered_at", count: person.volunteers.count) %></h2>
     <table class="table-auto w-full my-4">
       <thead>
         <tr class="bg-purple-400 text-xl font-medium text-center">
           <th class="py-2 px-4 w-1/3"><%= Event.model_name.human %></th>
-          <th class="py-2 px-4 w-1/3"><%= t("nw5k.place") %></th>
-          <th colspan="2" class="py-2 px-4 w-1/3"><%= t("nw5k.time") %></th>
+          <th class="py-2 px-4 w-1/3"><%= t("nw5k.role") %></th>
         </tr>
       </thead>
       <tbody>
-        <% person.reverse_chronological_results.each do |result| %>
+        <% person.reverse_chronological_volunteers.each do |contribution| %>
           <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-            <td><%= link_to "#{result.event.number} - #{result.event.date.to_fs(:short)}", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td><%= link_to result.place, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td class="text-right"><%= link_to result.time_string, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td class="text-left w-4 lg:w-8">
-							<% if result.first_timer? %>
-                <div class="has-tooltip">
-                  <%= link_to "👋", result.person, class: "no-underline text-gray-800 hover:text-purple-800" %>
-                  <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></span>
-                </div>
-              <% elsif result.pb? %>
-                <div class="has-tooltip">
-                  <%= link_to "🔔", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %>
-                  <span class="tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb") %></span>
-                </div>
-              <% end %>
-            </td>
+            <td><%= link_to "#{contribution.event.number} - #{contribution.event.date.to_fs(:short)}", contribution.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <td><%= link_to contribution.role, contribution.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    
-    <% if person.volunteers.count > 0 %>
-      <h2 id="volunteering" class="text-2xl font-medium py-2"><%= t("nw5k.events_volunteered_at", count: person.volunteers.count) %></h2>
-      <table class="table-auto w-full my-4">
-        <thead>
-          <tr class="bg-purple-400 text-xl font-medium text-center">
-            <th class="py-2 px-4 w-1/3"><%= Event.model_name.human %></th>
-            <th class="py-2 px-4 w-1/3"><%= t("nw5k.role") %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% person.reverse_chronological_volunteers.each do |contribution| %>
-            <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-              <td><%= link_to "#{contribution.event.number} - #{contribution.event.date.to_fs(:short)}", contribution.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-              <td><%= link_to contribution.role, contribution.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-	</div>
+  <% end %>
 </div>

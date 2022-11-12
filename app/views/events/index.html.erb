@@ -1,26 +1,24 @@
-<div class="w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
-	<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
-		<h1 class="text-3xl font-medium py-2"><%= t("nw5k.past_results") %></h1>
-    <p><%= t("nw5k.event_list_instructions") %></p>
-    <table class="table-auto w-full my-4">
-      <thead>
-        <tr class="bg-purple-400 text-xl font-medium text-center">
-          <th><%= t("nw5k.event_number") %></th>
-          <th><%= t("nw5k.event_date") %></th>
-          <th><%= t("nw5k.participants") %></th>
-          <th><%= t("nw5k.fastest_time") %></th>
+<div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
+	<h1 class="text-3xl font-medium py-2"><%= t("nw5k.past_results") %></h1>
+  <p><%= t("nw5k.event_list_instructions") %></p>
+  <table class="table-auto w-full my-4">
+    <thead>
+      <tr class="bg-purple-400 text-xl font-medium text-center">
+        <th><%= t("nw5k.event_number") %></th>
+        <th><%= t("nw5k.event_date") %></th>
+        <th><%= t("nw5k.participants") %></th>
+        <th><%= t("nw5k.fastest_time") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
+          <td><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td><%= link_to event.date.to_fs(:short), event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td><%= link_to event.results.order(:time).first&.time_string, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-            <td><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td><%= link_to event.date.to_fs(:short), event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-            <td><%= link_to event.results.order(:time).first&.time_string, event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-	</div>
+      <% end %>
+    </tbody>
+  </table>
 </div>
