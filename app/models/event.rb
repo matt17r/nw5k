@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   validates :number, numericality: {only_integer: true, greater_than: 0}
 
   def to_s
-    "#{number} - #{date}"
+    "##{number} - #{date.to_fs(:short)}"
   end
 
   def to_param
