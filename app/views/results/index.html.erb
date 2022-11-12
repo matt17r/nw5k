@@ -4,7 +4,7 @@
   <% @results.each do |result| %>
     <%= render result %>
     <p>
-      <%= link_to "Show this result", event_result_path(result.event, result) %>
+      <%= link_to "Edit this result", edit_event_result_path(result.event, result) %>
     </p>
   <% end %>
 </div>
