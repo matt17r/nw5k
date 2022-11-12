@@ -13,9 +13,7 @@ class EventsController < ApplicationController
 
   def show_latest
     @event = Event.order(number: :desc).first
-    @results = @event.results.order(:time).includes(:person)
-    @volunteers = @event.volunteers.order(:role).includes(:person)
-    render :show
+    redirect_to event_url(@event)
   end
 
   def new
