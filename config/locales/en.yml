@@ -60,7 +60,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -82,11 +82,11 @@ en:
     - Friday
     - Saturday
     formats:
-      default: "%d-%m-%Y"
+      default: "%d %b %y"
       long: "%d %B, %Y"
       short: "%d %b"
     month_names:
-    - 
+    -
     - January
     - February
     - March
