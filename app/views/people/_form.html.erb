@@ -17,11 +17,6 @@
   </div>
 
   <div>
-    <%= form.label :email, class: "block" %>
-    <%= form.text_field :email, required: true %>
-  </div>
-
-  <div>
     <%= form.label :nickname, class: "block" %>
     <%= form.text_field :nickname %>
   </div>
@@ -31,32 +26,39 @@
     <%= form.text_field :emoji %>
   </div>
 
-  <div>
-    <%= form.label :password, class: "block" %>
-    <%= form.password_field :password, required: true %>
-  </div>
+  <% if action_name == "edit" %>
+    <div>
+      <%= form.label :email, class: "block" %>
+      <%= form.text_field :email, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :password, class: "block" %>
+      <%= form.password_field :password, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation, class: "block" %>
+      <%= form.password_field :password_confirmation, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :birthdate, class: "block" %>
+      <%= form.date_field :birthdate %>
+    </div>
+
+    <div>
+      <%= form.label :country, class: "block" %>
+      <%= form.text_field :country %>
+    </div>
+
+    <div>
+      <%= form.label :parkrun_id, class: "block" %>
+      <%= form.text_field :parkrun_id %>
+    </div>
+  <% end %>
 
   <div>
-    <%= form.label :password_confirmation, class: "block" %>
-    <%= form.password_field :password_confirmation, required: true %>
-  </div>
-
-  <div>
-    <%= form.label :birthdate, class: "block" %>
-    <%= form.date_field :birthdate %>
-  </div>
-
-  <div>
-    <%= form.label :country, class: "block" %>
-    <%= form.text_field :country %>
-  </div>
-
-  <div>
-    <%= form.label :parkrun_id, class: "block" %>
-    <%= form.text_field :parkrun_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "bg-purple-500 hover:bg-purple-700 text-white font-bold mt-2 py-2 px-4 rounded" %>
   </div>
 <% end %>
