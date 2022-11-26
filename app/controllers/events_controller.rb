@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  skip_before_action :authenticate_admin!, only: [:index, :show, :show_latest]
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_admin!, only: [:image, :index, :show, :show_latest]
+  before_action :set_event, only: [:show, :edit, :image, :update, :destroy]
 
   def index
     @events = Event.all.order(number: :desc).includes(:results)
@@ -14,6 +14,14 @@ class EventsController < ApplicationController
   def show_latest
     @event = Event.order(number: :desc).first
     redirect_to event_url(@event)
+  end
+
+  def image
+    results = @event.results
+    @results = results.count
+    @pbs = results.select{ |r| r.pb? }.count
+    @first_timers = results.select{ |r| r.first_timer? }.count
+    @fastest_time = results.order(:time).limit(1).first
   end
 
   def new

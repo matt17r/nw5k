@@ -3,7 +3,11 @@
   <head>
     <title><%= page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= render "layouts/open_graph" %>
+    <% if content_for?(:open_graph) %>
+      <%= yield(:open_graph) %>
+    <% else %>
+      <%= render "layouts/open_graph" %>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
