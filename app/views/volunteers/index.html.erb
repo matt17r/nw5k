@@ -4,7 +4,7 @@
   <% @volunteers.each do |volunteer| %>
     <%= render volunteer %>
     <p>
-      <%= link_to "Edit this volunteer", edit_event_result_path(result.event, result) %>
+      <%= link_to "Edit this volunteer", edit_event_volunteer_path(volunteer.event, volunteer) %>
     </p>
   <% end %>
 </div>
