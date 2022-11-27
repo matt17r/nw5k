@@ -35,7 +35,9 @@ If you see warnings from Heroku about a more recent Ruby version being available
   rbenv install -l # List latest stable versions
   rbenv install <stable version>
   rbenv local <stable version> # Updates value in /.ruby-version
-  ```  
+  ```
 - Update Ruby version in Gemfile
-- Install gems into new version of Ruby  
+- Update bundler
+  `bundle update --bundler`
+- Install gems into new version of Ruby
   `bundle install`
