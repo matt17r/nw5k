@@ -2,14 +2,20 @@
 
 ## Getting started
 
-Copy .env file and populate required settings (values can be found using `heroku config:get`)
+Copy .env file...
 
 ```sh
 cp .env.template .env
+```
 
-# Access each variable listed in .env to replace the template placeholder
-# e.g.
-heroku config:get CLOUDMAILIN_HOST
+...and populate required settings (settings are in 1Password or on the server in `~/nw5k/.rbenv-vars`)
+
+## Deploying
+
+Ensure `CAPISTRANO_DEPLOYMENT_IP_ADDRESS` is set correctly (see above) and deploy with capistrano:
+
+```sh
+cap production deploy
 ```
 
 ## Copy prod data to dev
@@ -17,8 +23,7 @@ heroku config:get CLOUDMAILIN_HOST
 While I can still get away with it, the way to copy prod data to the dev environment is:
 
 ```sh
-heroku pg:backups:capture
-heroku pg:backups:download
+# TODO - create a capistrano task to make and download a database backup
 
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d nw5k_development latest.dump
 
@@ -26,8 +31,6 @@ rm latest.dump
 ```
 
 ## To update Ruby
-
-If you see warnings from Heroku about a more recent Ruby version being available:
 
 - Install latest stable version of Ruby
   ```sh
