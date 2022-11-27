@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  host: localhost
   database: nw5k_production
   username: nw5k
   password: <%= ENV["NW5K_DATABASE_PASSWORD"] %>
