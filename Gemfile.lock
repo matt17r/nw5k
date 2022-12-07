@@ -237,6 +237,7 @@ GEM
     sshkit (1.21.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stackprof (0.2.23)
     standard (1.16.0)
       rubocop (= 1.35.0)
       rubocop-performance (= 1.14.3)
@@ -292,6 +293,7 @@ DEPENDENCIES
   redis (~> 4.0)
   selenium-webdriver
   sprockets-rails
+  stackprof
   standard
   stimulus-rails
   turbo-rails
