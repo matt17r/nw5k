@@ -222,7 +222,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
-    scenic (1.6.0)
+    scenic (1.7.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
     selenium-webdriver (4.4.0)
