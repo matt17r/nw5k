@@ -6,8 +6,13 @@ class EventsController < ApplicationController
     @events = Event.all.order(number: :desc).includes(:results)
   end
 
+  def recalculate_results
+    ResultWithHistoricalData.refresh # This probably belongs in an async after_commit callback with a built in delay, but this will do for now
+    redirect_back(fallback_location: results_path)
+  end
+
   def show
-    @results = @event.results.order(:time).includes(:person)
+    @results = @event.results_with_historical_data.order(:time).includes(:person)
     @volunteers = @event.volunteers.order(:role).includes(:person)
   end
 
