@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_092155) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_050653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,4 +85,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_092155) do
   add_foreign_key "results", "people"
   add_foreign_key "volunteers", "events"
   add_foreign_key "volunteers", "people"
+
+  create_view "results_with_historical_data", materialized: true, sql_definition: <<-SQL
+      SELECT results.id,
+      results.event_id,
+      events.date,
+      rank() OVER (PARTITION BY results.event_id ORDER BY results."time") AS "position",
+      results.person_id,
+      results."time",
+          CASE
+              WHEN ((results.person_id IS NOT NULL) AND (events.date = min(events.date) OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW))) THEN true
+              ELSE NULL::boolean
+          END AS first_timer,
+      min(results."time") OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS fastest_time_to_date
+     FROM (results
+       JOIN events ON ((results.event_id = events.id)))
+    ORDER BY events.date;
+  SQL
 end
