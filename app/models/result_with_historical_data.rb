@@ -15,7 +15,7 @@ class ResultWithHistoricalData < ApplicationRecord
   def pb?
     return false unless person
     return false if first_timer?
-    time == fastest_time_to_date
+    time && time == fastest_time_to_date
   end
 
   def time_string
