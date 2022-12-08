@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :results
+  has_many :results_with_historical_data, class_name: "ResultWithHistoricalData"
   has_many :volunteers
 
   validates :date, presence: true
