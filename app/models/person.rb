@@ -3,6 +3,7 @@ class Person < ApplicationRecord
   before_save :downcase_email
 
   has_many :results
+  has_many :results_with_historical_data, class_name: "ResultWithHistoricalData"
   has_many :volunteers
 
   validates :name, presence: true
@@ -16,7 +17,7 @@ class Person < ApplicationRecord
   end
 
   def reverse_chronological_results
-    self.results.joins(:event).order(date: :desc)
+    self.results_with_historical_data.joins(:event).order(date: :desc)
   end
 
   def reverse_chronological_volunteers
