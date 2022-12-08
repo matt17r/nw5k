@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @results = @event.results.order(:time).includes(:person)
+    @results = @event.results_with_historical_data.order(:time).includes(:person)
     @volunteers = @event.volunteers.order(:role).includes(:person)
   end
 
