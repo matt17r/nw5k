@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def check_rack_mini_profiler
-    if params[:rmp] && admin_signed_in?
+    if admin_signed_in?
       Rack::MiniProfiler.authorize_request
     end
   end
