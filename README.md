@@ -1,6 +1,20 @@
 # README
 
-## Getting started
+This is the code for the nw5k.com website. NW5k is a free, weekly, timed, 5k run/walk in the spirit of parkrun. NW5k was started because we wanted a local parkrun in Phnom Penh but [parkrun aren't currently expanding to new countries](https://www.parkrun.com/about/start-your-own-event/)... and even if they were, I worry that they wouldn't be okay with the compromises required to make this event happen in a developing nation with very little in the way of parks or public infrastructure.
+
+## Architecture
+
+This is a Ruby on Rails app running on a VPS (currently Azure, thanks to free credits) and using PostgreSQL as the database. It is deployed using Capistrano.
+
+The app itself uses Tailwind CSS for styling, Hotwire (Turbo and Stimulus) for [very limited] interactivity and I18n to translate the application into Khmer and Mandarin (Chinese).
+
+Currently there is no test suite. I'm not proud of that but it is what it is. If/when I do add tests they will use Minitest.
+
+## Development
+
+I'm a team of one so these instructions are mainly to help future me if I ever need to set up a new development environment.
+
+### Getting Started
 
 Copy .env file...
 
@@ -10,7 +24,7 @@ cp .env.template .env
 
 ...and populate required settings (settings are in 1Password or on the server in `~/nw5k/.rbenv-vars`)
 
-## Deploying
+### Deploying
 
 Ensure `CAPISTRANO_DEPLOYMENT_IP_ADDRESS` is set correctly (see above) and deploy with capistrano:
 
@@ -18,7 +32,7 @@ Ensure `CAPISTRANO_DEPLOYMENT_IP_ADDRESS` is set correctly (see above) and deplo
 cap production deploy
 ```
 
-## Copy prod data to dev
+### Copy prod data to dev
 
 While I can still get away with it, the way to copy prod data to the dev environment is:
 
@@ -30,7 +44,7 @@ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d nw5k_developmen
 rm latest.dump
 ```
 
-## To update Ruby
+### To update Ruby
 
 - Install latest stable version of Ruby
   ```sh
