@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_08_050653) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_071103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "distances", ["5km", "2miles"]
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -67,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_050653) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "distance", default: "5km", null: false, enum_type: "distances"
     t.index ["event_id"], name: "index_results_on_event_id"
     t.index ["person_id"], name: "index_results_on_person_id"
   end
@@ -90,14 +95,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_050653) do
       SELECT results.id,
       results.event_id,
       events.date,
-      rank() OVER (PARTITION BY results.event_id ORDER BY results."time") AS "position",
+      results.distance,
+      rank() OVER (PARTITION BY results.event_id, results.distance ORDER BY results."time") AS "position",
       results.person_id,
       results."time",
           CASE
               WHEN ((results.person_id IS NOT NULL) AND (events.date = min(events.date) OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW))) THEN true
               ELSE NULL::boolean
           END AS first_timer,
-      min(results."time") OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS fastest_time_to_date
+      min(results."time") OVER (PARTITION BY results.person_id, results.distance ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS fastest_time_to_date
      FROM (results
        JOIN events ON ((results.event_id = events.id)))
     ORDER BY events.date;

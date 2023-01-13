@@ -49,6 +49,6 @@ class ResultsController < ApplicationController
   end
 
   def result_params
-    params.require(:result).permit(:person_id, :event_id, :time_string)
+    params.require(:result).permit(:person_id, :event_id, :distance, :time_string)
   end
 end

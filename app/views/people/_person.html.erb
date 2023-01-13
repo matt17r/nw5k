@@ -3,8 +3,9 @@
   <h2 class="text-2xl font-medium py-2"><%= t("nw5k.events_completed", count: person.results.count) %></h2>
   <table class="table-auto w-full my-4">
     <thead>
-      <tr class="bg-purple-400 text-xl font-medium text-center">
+      <tr class="bg-purple-600 text-gray-100 text-xl font-medium text-center">
         <th class="py-2 px-4 w-1/3"><%= Event.model_name.human %></th>
+        <th class="py-2 px-4 w-1/3"><%= t("nw5k.distance") %></th>
         <th class="py-2 px-4 w-1/3"><%= t("nw5k.place") %></th>
         <th colspan="2" class="py-2 px-4 w-1/3"><%= t("nw5k.time") %></th>
       </tr>
@@ -13,6 +14,7 @@
       <% person.reverse_chronological_results.each do |result| %>
         <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
           <td><%= link_to "#{result.event.number} - #{result.event.date.to_fs(:short)}", result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+          <td><%= link_to Result.human_attribute_name(result.distance), result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
           <td><%= link_to result.position, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
           <td class="text-right"><%= link_to result.time_string, result.event, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
           <td class="text-left w-4 lg:w-8">
