@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :distance, class: "block" %>
+    <%= form.select :distance, Result.distances.keys.map {|key| [Result.human_attribute_name("result.#{key}"), key]} %>
+  </div>
+
+  <div>
     <%= form.label :time, class: "block" %>
     <%= form.text_field :time_string, placeholder: "24:51 or 1:03:46" %>
   </div>
