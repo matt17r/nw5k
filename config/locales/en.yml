@@ -44,6 +44,8 @@ en:
         password_confirmation: "Confirm Password"
       result:
         unknown: Unknown
+        5km: 5 Km
+        2miles: 2 Mi
     errors:
       messages:
         record_invalid: 'Validation failed: %{errors}'
