@@ -44,7 +44,7 @@ en:
         password_confirmation: "Confirm Password"
       result:
         unknown: Unknown
-        5km: 5 Km
+        5km: 5 km
         2miles: 2 Mi
     errors:
       messages:
