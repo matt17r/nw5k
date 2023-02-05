@@ -1,5 +1,5 @@
 class Person < ApplicationRecord
-  after_initialize :init
+  after_initialize :set_default_values, if: :new_record?
   before_save :downcase_email
 
   has_many :results
@@ -26,11 +26,11 @@ class Person < ApplicationRecord
 
   private
 
-  def init
+  def set_default_values
     animal = random_animal
     adjective = alliterative_adjective(animal[:name].first)
 
-    self.email ||= "#{animal[:name]}@local"
+    self.email ||= "#{adjective}.#{animal[:name]}@local"
     self.emoji ||= animal[:emoji]
     self.nickname ||= "#{adjective} #{animal[:name]}"
     self.password ||= SecureRandom.hex
