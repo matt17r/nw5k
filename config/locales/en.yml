@@ -18,6 +18,7 @@ en:
       one: Volunteered at one event
       other: "Volunteered at %{count} events"
     first_timer: 1st Timer
+    no_results: No results published. Please check back soon.
     other_events: See all events
     participant: Participant
     participants: Participants
