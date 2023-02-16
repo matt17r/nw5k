@@ -1,20 +1,23 @@
 @tailwind base;
 
 @layer base {
-  h1 {
-    @apply text-4xl font-bold text-nw5k-eggplant-700;
-  }
-  h2 {
-    @apply text-2xl font-bold text-nw5k-eggplant-700;
-  }
-  h3 {
-    @apply text-lg font-bold text-nw5k-eggplant-700;
-  }
   a {
     @apply text-nw5k-teal underline;
   }
   a:hover {
     @apply text-nw5k-eggplant-700;
+  }
+  h1 {
+    @apply text-4xl font-bold text-nw5k-eggplant-700 py-2;
+  }
+  h2 {
+    @apply text-2xl font-medium text-nw5k-eggplant-700 py-2;
+  }
+  h3 {
+    @apply text-lg font-medium text-nw5k-eggplant-700 py-2;
+  }
+  p {
+    @apply py-2;
   }
 }
 
