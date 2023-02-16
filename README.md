@@ -58,3 +58,6 @@ rm latest.dump
   `bundle update --bundler`
 - Install gems into new version of Ruby
   `bundle install`
+- Commit
+- Update Ruby version in Capfile
+- Deploy

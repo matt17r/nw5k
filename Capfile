@@ -10,7 +10,7 @@ require "capistrano/passenger"
 require "dotenv/load"
 
 set :rbenv_type, :user
-set :rbenv_ruby, "3.1.3"
+set :rbenv_ruby, "3.2.0"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
