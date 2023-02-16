@@ -21,7 +21,9 @@ km:
     participant: អ្នកចូលរួម
     participants: ចំនួនអ្នកចូលរួម
     past_results: លទ្ធផលកន្លងមក
-    pb: NW5k ផ្ទាល់ខ្លួនល្អបំផុត
+    pb:
+      5km: 5km ផ្ទាល់ខ្លួនល្អបំផុត
+      2miles: 2Mi ផ្ទាល់ខ្លួនល្អបំផុត
     place: ចំណាត់ថ្នាក់
     time: ពេលវេលា
     unknown: មិនស្គាល់

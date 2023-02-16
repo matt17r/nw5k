@@ -26,7 +26,7 @@
             <% elsif result.pb? %>
               <div class="has-tooltip">
                 <%= link_to "🔔", result.event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %>
-                <span class="tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb") %></span>
+                <span class="tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb.#{result.distance}") %></span>
               </div>
             <% end %>
           </td>

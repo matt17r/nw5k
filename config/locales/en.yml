@@ -22,7 +22,9 @@ en:
     other_events: See all events
     participant: Participant
     participants: Participants
-    pb: NW5k Personal Best
+    pb:
+      5km: 5km Personal Best
+      2miles: 2Mi Personal Best
     place: Place
     role: Role
     thanks_to_volunteers: "🙏 Thanks to the following people for volunteering at this event:"
