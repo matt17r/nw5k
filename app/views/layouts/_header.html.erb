@@ -1,29 +1,36 @@
 <header>
   <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white" data-controller="menu">
-  	<div class="pl-8 lg:pl-32">
+  	<div class="flex-1 md:pl-8 lg:pl-32 2xl:pl-64">
       <%= link_to root_path do %>
         <span class="sr-only">New World 5k</span>
-        <%= image_tag "NW5k-logo-inline.png", class: "h-14", aria: { hidden: true } %>
+        <%= image_tag "NW5k-Logo-with-name-small.png", class: "h-14", aria: { hidden: true } %>
   		<% end %>
   	</div>
+    <div class="pr-4">
+      <% if I18n.locale == I18n.default_locale %>
+        <%= link_to "🇬🇧 English", { locale: 'en' }, class: "no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
+      <% else %>
+        <%= link_to "🇰🇭 ខ្មែរ", { locale: 'km' }, class: "no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
+      <%end%>
+    </div>
     <div data-action="click->menu#toggle" data-menu-target="icon" class="cursor-pointer md:hidden">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </div>
-  	<div class="hidden w-full md:flex md:items-center md:w-auto pr-8 lg:pr-32" data-menu-target="menuContainer" data-expanded="0">
+  	<div class="hidden w-full md:flex md:items-center md:w-auto md:pr-8 lg:pr-32 2xl:pr-64" data-menu-target="menuContainer" data-expanded="0">
     	<ul class="pt-4 text-base md:flex md:justify-between md:pt-0">
 				<li>
-          <%= link_to t(".home"), root_path, class: "md:p-4 py-2 block text-purple-600 no-underline hover:text-purple-800 hover:no-underline" %>
+          <%= link_to t(".home"), root_path, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
           </li>
 				<li>
-          <%= link_to t(".course"), course_path, class: "md:p-4 py-2 block text-purple-600 no-underline hover:text-purple-800 hover:no-underline" %>
+          <%= link_to t(".course"), course_path, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
         </li>
 			  <li>
-          <%= link_to t(".results"), results_path, class: "md:p-4 py-2 block text-purple-600 no-underline hover:text-purple-800 hover:no-underline" %>
+          <%= link_to t(".results"), results_path, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
         </li>
         <% if admin_signed_in? %>
-          <li> <%= button_to t(".log_out"), logout_path, method: :delete, class: "md:p-4 py-2 block text-purple-600 no-underline hover:text-purple-800 hover:no-underline" %></li>
+          <li> <%= button_to t(".log_out"), logout_path, method: :delete, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %></li>
         <% end %>
       </ul>
   	</div>

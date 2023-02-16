@@ -1,10 +1,10 @@
 <div class="mx-auto md:my-4 items-center justify-center md:rounded-lg bg-white p-0 md:p-4 lg:p-16">
-  <h1 class="text-3xl font-medium p-2 md:p-0 md:py-2"><%= "#{Event.model_name.human} ##{@event.number} - #{l(@event.date)}" %></h1>
-  <h3 class="text-xl font-medium p-2 md:p-0 md:py-2"><%= link_to t("nw5k.other_events"), events_path, class: "text-purple-600 no-underline hover:text-purple-800 hover:no-underline" %></h3>
+  <p class="text-xl font-medium p-2 md:p-0 md:py-2"><%= link_to t("nw5k.other_events"), events_path %></p>
+  <h1 class="p-2 md:p-0 md:py-2"><%= "#{Event.model_name.human} ##{@event.number} - #{l(@event.date)}" %></h1>
   <% if @five_k_results.present? || @two_mi_results.present? %>
     <table class="table-auto w-full my-4">
       <thead>
-        <tr class="bg-purple-600 text-xl font-medium text-center text-gray-100">
+        <tr class="bg-nw5k-eggplant-800 text-xl font-medium text-center text-gray-100">
           <th class="py-2 px-4 w-1/4"><%= t("nw5k.place") %></th>
           <th class="text-left py-2 px-4 w-1/2"><%= t("nw5k.participant") %></th>
           <th colspan="2" class="py-2 px-4 w-1/4"><%= t("nw5k.time") %></th>
@@ -13,25 +13,25 @@
       <tbody>
         <% if @five_k_results.present? %>
           <% if @two_mi_results.present? %>
-            <tr class="bg-purple-300 text-xl font-medium">
+            <tr class="bg-nw5k-eggplant-200 text-xl font-medium">
               <th colspan="4" scope="colgroup" class="py-1">5 Km</th>
             </tr>
           <% end %>
           <% @five_k_results.each do |result| %>
-            <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-              <td><%= link_to result.position, result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-              <td class="text-left"><%= link_to result.person || t("nw5k.unknown"), result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-				        <td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <tr class="text-center text-xl odd:bg-white even:bg-nw5k-eggplant-50 hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
+              <td><%= link_to result.position, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+              <td class="text-left"><%= link_to result.person || t("nw5k.unknown"), result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+				        <td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
               <td class="text-left w-4 lg:w-8">
 					        <% if result.first_timer? %>
                   <div class="has-tooltip">
-                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></div>
-                    <span class="no-underline text-gray-800 hover:text-purple-800">👋</span>
+                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></div>
+                    <span class="no-underline text-gray-800 hover:text-nw5k-eggplant-700">👋</span>
                   </div>
                 <% elsif result.pb? %>
                   <div class="has-tooltip">
-                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb") %></div>
-                    <span class="no-underline text-gray-800 hover:text-purple-800">🔔</span>
+                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb.5km") %></div>
+                    <span class="no-underline text-gray-800 hover:text-nw5k-eggplant-700">🔔</span>
                   </div>
                 <% end %>
               </td>
@@ -39,24 +39,24 @@
           <% end %>
         <% end %>
         <% if @two_mi_results.present? %>
-          <tr class="bg-purple-300 text-xl font-medium">
+          <tr class="bg-nw5k-eggplant-200 text-xl font-medium">
             <th colspan="4" scope="colgroup" class="py-1">2 Miles</th>
           </tr>
           <% @two_mi_results.each do |result| %>
-            <tr class="text-center text-xl hover:bg-purple-200 hover:text-purple-800">
-              <td><%= link_to result.position, result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-              <td class="text-left"><%= link_to result.person || t("nw5k.unknown"), result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
-                <td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-purple-800" %></td>
+            <tr class="text-center text-xl hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
+              <td><%= link_to result.position, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+              <td class="text-left"><%= link_to result.person || t("nw5k.unknown"), result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+                <td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
               <td class="text-left w-4 lg:w-8">
                   <% if result.first_timer? %>
                   <div class="has-tooltip">
-                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></div>
-                    <span class="no-underline text-gray-800 hover:text-purple-800">👋</span>
+                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.first_timer") %></div>
+                    <span class="no-underline text-gray-800 hover:text-nw5k-eggplant-700">👋</span>
                   </div>
                 <% elsif result.pb? %>
                   <div class="has-tooltip">
-                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-purple-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb") %></div>
-                    <span class="no-underline text-gray-800 hover:text-purple-800">🔔</span>
+                    <div class="absolute right-0 lg:right-auto tooltip p-1 text-sm font-medium text-white bg-nw5k-eggplant-900 rounded-md shadow-sm transition-opacity duration-300"><%= t("nw5k.pb.2miles") %></div>
+                    <span class="no-underline text-gray-800 hover:text-nw5k-eggplant-700">🔔</span>
                   </div>
                 <% end %>
               </td>
@@ -66,7 +66,7 @@
       </tbody>
     </table>
   <% else %>
-    <h2 class="text-2xl font-medium p-2 md:p-0 md:py-2">No results yet</h2>
+    <p class="text-2xl font-medium p-2 md:p-0 md:py-2"><%= t("nw5k.no_results") %></p>
   <% end %>
   <%= render "volunteers", volunteers: @volunteers if @volunteers.present? %>
 </div>
