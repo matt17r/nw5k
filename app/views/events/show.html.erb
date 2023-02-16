@@ -43,7 +43,7 @@
             <th colspan="4" scope="colgroup" class="py-1">2 Miles</th>
           </tr>
           <% @two_mi_results.each do |result| %>
-            <tr class="text-center text-xl hover:bg-nw5k-eggplant-200 hover:text-nw5k-eggplant-700">
+            <tr class="text-center text-xl hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
               <td><%= link_to result.position, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
               <td class="text-left"><%= link_to result.person || t("nw5k.unknown"), result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
                 <td class="text-right"><%= link_to result.time_string, result.person, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
