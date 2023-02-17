@@ -33,6 +33,7 @@ en:
     volunteers: Volunteers
   activerecord:
     models:
+      event: "Event"
       person: "Athlete"
     attributes:
       person:
