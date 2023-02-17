@@ -13,7 +13,10 @@ km:
     event_number: លេខព្រឹត្តិការណ៍
     events_completed:
       one: ព្រឹត្តិការណ៍
-      other: "%{count} ព្រឹត្តិការណ៍បានបញ្ចប់"
+      other: "បានបញ្ចប់ព្រឹត្តិការណ៍ %{count}"
+    events_volunteered_at:
+      one: បានស្ម័គ្រចិត្តនៅក្នុងព្រឹត្តិការណ៍មួយ។
+      other: "ស្ម័គ្រ​ចិត្ត​ក្នុង​ព្រឹត្តិការណ៍​ចំនួន %{count}"
     fastest_time: ពេលវេលាលឿនបំផុត។
     first_timer: លើកទីមួយ
     no_results: គ្មានលទ្ធផលត្រូវបានបោះពុម្ពផ្សាយទេ។ សូមពិនិត្យមើលឡើងវិញឆាប់ៗនេះ។
@@ -25,17 +28,30 @@ km:
       5km: 5km ផ្ទាល់ខ្លួនល្អបំផុត
       2miles: 2Mi ផ្ទាល់ខ្លួនល្អបំផុត
     place: ចំណាត់ថ្នាក់
+    role: តួនាទី
+    thanks_to_volunteers: "🙏 សូមអរគុណដល់សប្បុរសជនដែលបានស្ម័គ្រចិត្តក្នុងកម្មវិធីនេះ៖"
     time: ពេលវេលា
     unknown: មិនស្គាល់
+    volunteers: អ្នកស្ម័គ្រចិត្ត
   activerecord:
     models:
       event: ព្រឹត្តិការណ៍
       person: អត្តពលិក
     attributes:
-      result:
-        unknown: មិនស្គាល់
       person:
-        event: ព្រឹត្តិការណ៍
+        name: "Name"
+        email: "Email"
+        nickname: "Public Display Name"
+        emoji: "Public Emoji"
+        birthdate: "Date of Birth"
+        country: "Country"
+        parkrun_id: "Parkrun Barcode"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+      result:
+        unknown: មិន​ស្គាល់
+        5km: 5 km
+        2miles: 2 Mi
     errors:
       messages:
         record_invalid: មិនមានសុពលភាព៖ %{errors}
@@ -98,17 +114,42 @@ km:
   datetime:
     distance_in_words:
       about_x_hours: ប្រមាណ %{count} ម៉ោង
+
+
       about_x_months: ប្រមាណ %{count} ខែ
+
+
       about_x_years: ប្រមាណ %{count} ឆ្នាំ
+
+
       almost_x_years: ជិត %{count} ឆ្នាំ
+
+
       half_a_minute: កន្លះនាទី
       less_than_x_seconds: តិចជាង %{count} វិនាទី
+
+
       less_than_x_minutes: តិចជាង %{count} នាទី
+
+
       over_x_years: លើសពី %{count} ឆ្នាំ
+
+
       x_seconds: "%{count} វិនាទី"
+
+
       x_minutes: "%{count} នាទី"
+
+
       x_days: "%{count} ថ្ងៃ"
+
+
       x_months: "%{count} ខែ"
+
+
+      x_years: "%{count} ឆ្នាំ។"
+
+
     prompts:
       second: វិនាទី
       minute: នាទី
@@ -132,18 +173,28 @@ km:
       invalid: មិនត្រឹមត្រូវ
       less_than: ត្រូវតែតិចជាង %{count}
       less_than_or_equal_to: ត្រូវតែតិចជាងឬស្មើ %{count}
+      model_invalid: "ការផ្ទៀងផ្ទាត់បានបរាជ័យ៖ %{errors}"
       not_a_number: មិនមែនជាលេខទេ
       not_an_integer: ត្រូវតែជាចំនួនគត់
       odd: ត្រូវតែជាចំនួនសេស
       other_than: ត្រូវតែខុសពី %{count}
       present: ត្រូវតែរំលង
+      required: ត្រូវតែមាន
       taken: មានរួចហើយ
       too_long: វែងពេក (យ៉ាងច្រើន %{count} តួ)
+
+
       too_short: ខ្លីពេក (យ៉ាងតិច %{count} តួ)
+
+
       wrong_length: ប្រវែងមិនត្រូវ (គួរតែមាន %{count} តួ)
+
+
     template:
-      body: 'សូមពិនិត្យមើលកំហុសនៅខាងក្រោម:'
+      body: "សូមពិនិត្យមើលកំហុសនៅខាងក្រោម:"
       header: មានកំហុស %{count} ដែលបានបញ្ឈប់ការរក្សាទុក %{model}នេះ
+
+
   helpers:
     select:
       prompt: សូមជ្រើសរើស
@@ -176,18 +227,31 @@ km:
           quadrillion: ក្វាទ្រីលាន
           thousand: ពាន់
           trillion: ទ្រីលាន
-          unit: ''
+          unit: ""
       format:
-        delimiter: ''
+        delimiter: ""
         precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
     percentage:
       format:
-        delimiter: ''
+        delimiter: ""
+        format: "%n%"
     precision:
       format:
-        delimiter: ''
+        delimiter: ""
   support:
     array:
       last_word_connector: ", និង "
