@@ -37,11 +37,9 @@ cap production deploy
 While I can still get away with it, the way to copy prod data to the dev environment is:
 
 ```sh
-# TODO - create a capistrano task to make and download a database backup
+cap production db:dump
 
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -d nw5k_development latest.dump
-
-rm latest.dump
+cap production db:restore
 ```
 
 ### To update Ruby
