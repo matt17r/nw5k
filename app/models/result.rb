@@ -14,6 +14,8 @@ class Result < ApplicationRecord
 
   validate :validate_no_setter_errors
 
+  after_commit :refresh_results_materialised_view
+
   def place
     event.results.where("time < ?", time).count + 1
   end
@@ -54,6 +56,10 @@ class Result < ApplicationRecord
   end
 
   private
+
+  def refresh_results_materialised_view
+    ResultWithHistoricalData.refresh
+  end
 
   def validate_no_setter_errors
     return true if !@setter_errors || @setter_errors.empty?
