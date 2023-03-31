@@ -1,16 +1,33 @@
-<h1>Results - Event <%= @event %></h1>
-
-<div id="results">
-  <% @results.each do |result| %>
-    <%= render result %>
-    <p>
-      <%= link_to "Edit this result", edit_event_result_path(result.event, result) %>
-    </p>
-  <% end %>
-</div>
+<div class="justify-center items-center bg-white mx-auto md:rounded-lg md:my-4 p-4 lg:p-16">
+<h1>Edit Results - Event <%= @event %></h1>
+<h2><%= pluralize(@event.results.count, "Result") %></h2>
+<table class="table-auto w-full my-4">
+  <thead>
+    <tr class="bg-nw5k-eggplant-800 text-gray-100 text-xl font-medium text-center">
+      <th class="py-2 px-4 w-1/3">Finish position</th>
+      <th class="py-2 px-4 w-1/3"><%= Person.model_name.human %></th>
+      <th class="py-2 px-4 w-1/3"><%= t("nw5k.distance") %></th>
+      <th class="py-2 px-4 w-1/3"><%= t("nw5k.time") %></th>
+      <th class="py-2 px-4 w-1/3">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each_with_index do |result, index| %>
+      <tr class="text-center text-xl odd:bg-white even:bg-nw5k-eggplant-50 hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
+        <td><%= index + 1 %></td>
+        <td><%= result.person&.name %></td>
+        <td><%= result.distance %></td>
+        <td><%= result.time_string %></td>
+        <td><div class="scale-x-[-1]"><%= link_to "✎", edit_event_result_path(@event, result), class: "no-underline" %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "New result", new_event_result_path %>
 <br>
 <%= link_to "New volunteer", new_event_volunteer_path %>
 <br>
 <%= link_to "Recalculate results", recalculate_results_path %>
+<br>
+<%= link_to "Show published results", event_path(@event) %>
