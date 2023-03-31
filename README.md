@@ -6,7 +6,7 @@ This is the code for the nw5k.com website. NW5k is a free, weekly, timed, 5k run
 
 This is a Ruby on Rails app running on a VPS (currently Azure, thanks to free credits) and using PostgreSQL as the database. It is deployed using Capistrano.
 
-The app itself uses Tailwind CSS for styling, Hotwire (Turbo and Stimulus) for [very limited] interactivity and I18n to translate the application into Khmer and Mandarin (Chinese).
+The app itself uses Tailwind CSS for styling, Hotwire (Turbo and Stimulus) for [very limited] interactivity, and I18n to translate the application into Khmer and Mandarin (Chinese).
 
 Currently there is no test suite. I'm not proud of that but it is what it is. If/when I do add tests they will use Minitest.
 
