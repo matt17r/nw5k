@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     get "course", to: "pages#course"
     get "results", to: "events#show_latest"
     get "recalculate_results", to: "events#recalculate_results"
+    get "admin", to: "pages#admin"
   end
 end

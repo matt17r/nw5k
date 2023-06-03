@@ -30,7 +30,9 @@
           <%= link_to t(".results"), results_path, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
         </li>
         <% if admin_signed_in? %>
-          <li> <%= button_to t(".log_out"), logout_path, method: :delete, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %></li>
+          <li>
+            <%= link_to t(".admin"), admin_path, class: "md:p-4 py-2 block text-nw5k-teal no-underline hover:text-nw5k-eggplant-700 hover:no-underline" %>
+          </li>
         <% end %>
       </ul>
   	</div>

@@ -1,0 +1,33 @@
+<% content_for :page_title, "Admin Area" %>
+<div class="justify-center items-center bg-white mx-auto md:rounded-lg md:my-4 p-4 lg:p-16">
+  <h1 class="text-3xl font-medium py-2">Welcome, Admin</h1>
+  <h2 class="text-2xl font-medium py-2">Events:</h3>
+  <p class="font-medium py-2"><%= link_to "Create new event", new_event_path %></p>
+  <p class="font-medium py-2">Recent events:</p>
+  <ul>
+    <% @recent_events.each do |event| %>
+      <li><%= link_to "Edit #{event} (#{event.results.size} participants)", event_results_path(event) %>
+    <% end %>
+  </ul>
+  <p class="font-medium py-2"><%= link_to "See all events", events_path %></p>
+  <h2 class="text-2xl font-medium py-2">People:</h3>
+  <p class="font-medium py-2"><%= link_to "Create new person", new_person_path %></p>
+  <p class="font-medium py-2">Recently added people:</p>
+  <ul>
+    <% @recent_people.each do |person| %>
+      <li><%= link_to "Edit #{person.name}", edit_person_path(person) %> (<%= person %>)</li>
+    <% end %>
+  </ul>
+  <p class="font-medium py-2"><%= link_to "See all people", people_path %></p>
+  <h2 class="text-2xl font-medium py-2">Banners/Announcements:</h3>
+  <p class="font-medium py-2"><%= link_to "Create new banner", new_banner_path %></p>
+  <p class="font-medium py-2">Recent banners:</p>
+  <ul>
+    <% @recent_banners.each do |banner| %>
+      <li><%= link_to "Edit \"#{banner.title}\"", edit_banner_path(banner) %>
+    <% end %>
+  </ul>
+  <p class="font-medium py-2"><%= link_to "Manage all banners", banners_path %></p>
+  <h2 class="text-2xl font-medium py-2">Other</h2>
+  <p><%= button_to t(".log_out"), logout_path, method: :delete, class: "text-xl font-medium py-2 text-nw5k-teal underline hover:text-nw5k-eggplant-700" %></p>
+</div>

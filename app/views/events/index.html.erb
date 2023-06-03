@@ -16,7 +16,7 @@
           <td><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
           <td><%= link_to l(event.date), event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
           <td><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
-          <td><%= link_to event.results.order(:time).first&.time_string, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+          <td><%= link_to event.results.order(:time).first&.time_string || "N/A", event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
         </tr>
       <% end %>
     </tbody>

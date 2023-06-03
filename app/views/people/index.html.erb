@@ -1,16 +1,24 @@
+<div class="justify-center items-center bg-white mx-auto md:rounded-lg md:my-4 p-4 lg:p-16">
 <h1>People</h1>
-
-<div id="people">
-  <% @people.each do |person| %>
-    <h1 class="text-3xl font-medium py-2"><%= person.nickname %> <%= person.emoji %></h1>
-    <h2 class="text-2xl font-medium py-2"><%= t("nw5k.events_completed", count: person.results.count) %></h2>
-    <p>
-      <%= link_to "Show this person", person %>
-    </p>
-    <p>
-      <%= link_to "Edit this person", edit_person_path(person) %>
-    </p>
-  <% end %>
-</div>
+<table class="table-auto w-full my-4">
+  <thead>
+    <tr class="bg-nw5k-eggplant-800 text-gray-100 text-xl font-medium text-center">
+      <th class="py-2 px-4 w-1/3">Name</th>
+      <th class="py-2 px-4 w-1/3">Nickname</th>
+      <th class="py-2 px-4 w-1/3">Events</th>
+      <th class="py-2 px-4 w-1/3">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr class="text-xl odd:bg-white even:bg-nw5k-eggplant-50 hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
+        <td><%= person.name %></td>
+        <td><%= link_to person %></td>
+        <td class="text-center"><%= person.results.count %></td>
+        <td class="text-center"><div class="scale-x-[-1]"><%= link_to "✎", edit_person_path(person), class: "no-underline" %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "New person", new_person_path %>
