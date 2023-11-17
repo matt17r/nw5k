@@ -26,6 +26,10 @@
     <%= form.text_field :emoji %>
   </div>
 
+  <% if action_name != "edit" %>
+    <%= form.hidden_field :email %>
+  <% end %>
+
   <% if action_name == "edit" %>
     <div>
       <%= form.label :email, class: "block" %>
