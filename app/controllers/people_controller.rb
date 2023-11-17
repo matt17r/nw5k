@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @people = Person.order(results_count: :desc)
+    @people = Person.order("results_count DESC, nickname")
     respond_to do |format|
       format.html
       format.csv {

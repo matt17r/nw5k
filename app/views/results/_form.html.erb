@@ -13,7 +13,8 @@
 
   <div>
     <%= form.label :person, class: "block" %>
-    <%= collection_select :result, :person_id, Person.all, :id, :name, {include_blank: "Unknown"} %>
+    <%= collection_select :result, :person_id, Person.order("results_count DESC, name"), :id, :name, {include_blank: "Unknown"} %>
+    <p class="text-sm">(sorted by result count)</p>
   </div>
 
   <div>
