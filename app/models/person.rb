@@ -1,3 +1,5 @@
+require 'csv'
+
 class Person < ApplicationRecord
   after_initialize :set_default_values, if: :new_record?
   before_save :downcase_email
@@ -11,6 +13,20 @@ class Person < ApplicationRecord
 
   has_secure_password
   has_secure_token :remember_token
+
+  def self.to_csv
+    CSV.generate(force_quotes: true) do |csv|
+      csv << [ "Emoji", "Nickname", "Name", "Email" ]
+      all.each do |person|
+        csv << [
+          person.emoji,
+          person.nickname,
+          person.name,
+          person.email
+        ]
+      end
+    end
+  end
 
   def to_s
     "#{emoji} #{nickname}"
