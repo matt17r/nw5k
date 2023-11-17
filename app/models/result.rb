@@ -1,6 +1,6 @@
 class Result < ApplicationRecord
   HOUR_MINUTES_SECONDS_REGEXP = /\A(?:(?<hours>[0-9]?[0-9]):)?(?<minutes>[0-5]?[0-9]):(?<seconds>[0-5]?[0-9])\z/
-  belongs_to :person, optional: true
+  belongs_to :person, counter_cache: true, optional: true
   belongs_to :event
 
   enum distance: { '5km': "5km", '2miles': "2miles" }, _prefix: true

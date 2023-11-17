@@ -15,7 +15,7 @@
       <tr class="text-xl odd:bg-white even:bg-nw5k-eggplant-50 hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
         <td><%= person.name %></td>
         <td><%= link_to person %></td>
-        <td class="text-center"><%= person.results.count %></td>
+        <td class="text-center"><%= person.results.size %></td>
         <td class="text-center"><div class="scale-x-[-1]"><%= link_to "✎", edit_person_path(person), class: "no-underline" %></div></td>
       </tr>
     <% end %>
