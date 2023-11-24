@@ -32,6 +32,12 @@ Ensure `CAPISTRANO_DEPLOYMENT_IP_ADDRESS` is set correctly (see above) and deplo
 cap production deploy
 ```
 
+New environment variables should be added to:
+
+ - `.env` for development (do not commit this file into git or any other version control)
+ - `.env.template` sanitised and committed (as a pointer for future me to know what variables are required)
+ - `/home/matthew/nw5k/.rbenv-vars` on the server to be picked up in production by [rbenv-vars](https://github.com/rbenv/rbenv-vars)
+
 ### Copy prod data to dev
 
 While I can still get away with it, the way to copy prod data to the dev environment is:
