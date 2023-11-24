@@ -8,6 +8,7 @@ require "capistrano/rails"
 require "capistrano/rbenv"
 require "capistrano/passenger"
 require "dotenv/load"
+require 'capistrano/honeybadger'
 
 set :rbenv_type, :user
 set :rbenv_ruby, "3.2.0"
