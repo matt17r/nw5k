@@ -1,16 +1,17 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.0"
+ruby file: ".ruby-version"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "csv"
 gem "jsbundling-rails"
-gem "pg", "~> 1.1"
-gem "puma", "~> 5.0"
-gem "rails", "~> 7.0.4"
-gem "redis", "~> 4.0"
+gem "pg"
+gem "puma"
+gem "rails"
+gem "redis"
 gem "scenic"
 gem "sprockets-rails"
 gem "stimulus-rails"
@@ -37,7 +38,6 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
 
 gem "honeybadger", "~> 5.3"

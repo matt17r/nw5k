@@ -3,7 +3,7 @@ class Result < ApplicationRecord
   belongs_to :person, counter_cache: true, optional: true
   belongs_to :event
 
-  enum distance: { '5km': "5km", '2miles': "2miles" }, _prefix: true
+  enum :distance, { '5km': "5km", '2miles': "2miles" }, prefix: true
 
   validates :time, numericality: {
     only_integer: true,
@@ -17,7 +17,11 @@ class Result < ApplicationRecord
   after_commit :refresh_results_materialised_view
 
   def place
-    event.results.where("time < ?", time).count + 1
+    if time.nil?
+      event.results.where("time IS NOT NULL").count + 1
+    else
+      event.results.where("time IS NOT NULL AND time < ?", time).count + 1
+    end
   end
 
   def pb?

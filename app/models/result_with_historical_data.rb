@@ -4,7 +4,7 @@ class ResultWithHistoricalData < ApplicationRecord
   belongs_to :person, optional: true
   belongs_to :event
 
-  enum distance: { '5km': "5km", '2miles': "2miles" }, _prefix: true
+  enum :distance, { '5km': "5km", '2miles': "2miles" }, prefix: true
 
   def readonly?
     true
