@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :person, class: "block" %>
-    <%= collection_select(:volunteer, :person_id, Person.all, :id, :name, prompt: true) %>
+    <%= collection_select(:volunteer, :person_id, Person.all, :id, ->(person) { "#{person.name} (#{person.nickname})" }, {prompt: true}, {data: {controller: "searchable-select"}}) %>
   </div>
 
   <div>
