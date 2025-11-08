@@ -31,4 +31,50 @@
   @apply visible z-50;
 }
 
+/* Tom Select styles */
+.ts-wrapper {
+  @apply w-full;
+}
+
+.ts-wrapper .ts-control {
+  @apply min-w-full border border-gray-300 rounded px-3 py-2;
+}
+
+.ts-wrapper .ts-dropdown {
+  @apply min-w-full border border-gray-300 rounded shadow-lg;
+}
+
+.ts-wrapper .ts-dropdown-content {
+  @apply max-h-64 overflow-y-auto;
+}
+
+.ts-wrapper .ts-dropdown .option {
+  @apply pl-4;
+}
+
+/* Hide the original select when Tom Select is initialized */
+.ts-wrapper + select,
+.ts-hidden-accessible {
+  @apply hidden;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .ts-wrapper .ts-dropdown {
+    @apply w-screen max-w-full;
+  }
+
+  .ts-wrapper .ts-dropdown-content {
+    @apply max-h-48;
+  }
+
+  .ts-wrapper .ts-control {
+    @apply text-base; /* Prevent iOS zoom on focus */
+  }
+
+  .ts-wrapper .ts-control input {
+    @apply text-base; /* Prevent iOS zoom on focus */
+  }
+}
+
 @tailwind utilities;

@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import MenuController from "./menu_controller.js"
 application.register("menu", MenuController)
+
+import SearchableSelectController from "./searchable_select_controller.js"
+application.register("searchable-select", SearchableSelectController)
