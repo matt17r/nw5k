@@ -1,3 +1,5 @@
+@import "tom-select/dist/css/tom-select.default.css";
+
 @tailwind base;
 
 @layer base {
