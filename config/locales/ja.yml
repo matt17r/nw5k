@@ -2,3 +2,6 @@ ja:
   layouts:
     application:
       site_title: "NW5k - 新世界5キロ"
+  nw5k:
+    fastest_5k: 最速5km
+    fastest_2m: 最速2マイル

@@ -1,4 +1,7 @@
 zh:
+  nw5k:
+    fastest_5k: 最快5公里
+    fastest_2m: 最快2英里
   activerecord:
     errors:
       messages:

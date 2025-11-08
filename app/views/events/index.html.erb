@@ -1,22 +1,26 @@
 <div class="justify-center items-center bg-white mx-auto rounded-lg my-4 p-4 lg:p-16">
 	<h1 class="text-3xl font-medium py-2"><%= t("nw5k.past_results") %></h1>
   <p><%= t("nw5k.event_list_instructions") %></p>
-  <table class="table-auto w-full my-4">
+  <table class="table-auto w-full my-4" id="events-table" data-controller="sortable-table">
     <thead>
       <tr class="bg-nw5k-eggplant-800 text-gray-100 text-xl font-medium text-center">
-        <th><%= t("nw5k.event_number") %></th>
+        <th class="sortable cursor-pointer hover:bg-nw5k-eggplant-700" data-column="number"><%= t("nw5k.event_number") %> <span class="sort-indicator"></span></th>
         <th><%= t("nw5k.event_date") %></th>
-        <th><%= t("nw5k.participants") %></th>
-        <th><%= t("nw5k.fastest_time") %></th>
+        <th class="sortable cursor-pointer hover:bg-nw5k-eggplant-700" data-column="participants"><%= t("nw5k.participants") %> <span class="sort-indicator"></span></th>
+        <th class="sortable cursor-pointer hover:bg-nw5k-eggplant-700" data-column="fastest_5k"><%= t("nw5k.fastest_5k") %> <span class="sort-indicator"></span></th>
+        <th class="sortable cursor-pointer hover:bg-nw5k-eggplant-700" data-column="fastest_2m"><%= t("nw5k.fastest_2m") %> <span class="sort-indicator"></span></th>
       </tr>
     </thead>
     <tbody>
       <% @events.each do |event| %>
+        <% fastest_5k = event.results.where(distance: '5km').order(:time).first %>
+        <% fastest_2m = event.results.where(distance: '2miles').order(:time).first %>
         <tr class="text-center text-xl odd:bg-white even:bg-nw5k-eggplant-50 hover:bg-nw5k-eggplant-100 hover:text-nw5k-eggplant-700">
-          <td><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+          <td data-value="<%= event.number %>"><%= link_to event.number, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
           <td><%= link_to l(event.date), event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
-          <td><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
-          <td><%= link_to event.results.order(:time).first&.time_string || "N/A", event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+          <td data-value="<%= event.results.count %>"><%= link_to event.results.count, event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+          <td data-value="<%= fastest_5k&.time || 999999 %>"><%= link_to fastest_5k&.time_string || "N/A", event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
+          <td data-value="<%= fastest_2m&.time || 999999 %>"><%= link_to fastest_2m&.time_string || "N/A", event, class: "no-underline text-gray-800 hover:text-nw5k-eggplant-700" %></td>
         </tr>
       <% end %>
     </tbody>

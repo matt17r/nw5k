@@ -18,6 +18,8 @@ en:
       one: Volunteered at one event
       other: "Volunteered at %{count} events"
     fastest_time: Fastest Time
+    fastest_5k: Fastest 5k
+    fastest_2m: Fastest 2Mi
     first_timer: 1st Timer
     no_results: No results published. Please check back soon.
     other_events: See all events

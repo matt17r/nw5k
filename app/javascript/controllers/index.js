@@ -9,3 +9,6 @@ application.register("menu", MenuController)
 
 import SearchableSelectController from "./searchable_select_controller.js"
 application.register("searchable-select", SearchableSelectController)
+
+import SortableTableController from "./sortable_table_controller.js"
+application.register("sortable-table", SortableTableController)
