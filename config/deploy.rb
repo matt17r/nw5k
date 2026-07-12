@@ -7,4 +7,4 @@ set :deploy_to, "/home/matthew/#{fetch :application}"
 set :keep_releases, 5
 set :repo_url, "git@github.com:matt17r/nw5k.git"
 
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", ".bundle", "public/system", "public/uploads"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", ".bundle", "public/system", "public/uploads", "storage"

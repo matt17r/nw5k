@@ -5,16 +5,18 @@ ruby file: ".ruby-version"
 
 gem "bcrypt"
 gem "bootsnap", require: false
-gem "cssbundling-rails"
 gem "csv"
-gem "jsbundling-rails"
-gem "pg"
+gem "importmap-rails"
+gem "propshaft"
 gem "puma"
 gem "rails"
-gem "redis"
 gem "scenic"
-gem "sprockets-rails"
+gem "solid_cable"
+gem "solid_cache"
+gem "solid_queue"
+gem "sqlite3"
 gem "stimulus-rails"
+gem "tailwindcss-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
