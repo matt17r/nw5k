@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tom-select.css";
+@import "./tom-select.css";
 
 @plugin "@tailwindcss/forms";
 
