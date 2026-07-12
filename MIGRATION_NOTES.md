@@ -56,7 +56,7 @@ SQLite + Solid Cache/Queue/Cable.
 
 ### Known risk areas
 - **`load_defaults` 7.0 → 8.1 in one jump** flips every intermediate default at once. If tests surface breakage, step through incrementally with `new_framework_defaults_7_1/7_2/8_0/8_1.rb` files instead.
-- **Tailwind v3 → v4 utility renames** (`shadow`/`ring`/`rounded`/`outline-none`, bare-colour opacity syntax) are NOT auto-applied across templates. Run `npx @tailwindcss/upgrade` locally, or audit views, for pixel parity. The build itself compiles as-is.
+- **Tailwind v3 → v4 utility renames have been applied** across the templates: bare `rounded` → `rounded-sm`, `shadow-sm` → `shadow-xs`, `focus:outline-none` → `focus:outline-hidden` (all value-preserving). A full-app audit found no gradients, `theme()` calls, `*-opacity-*` utilities, blur/drop-shadow, or bare `ring`/`border` needing changes (the only rings are `ring-4`/`ring-red-300`, unchanged in v4). A quick visual pass is still worthwhile — especially the destroy-button focus states and the tooltip shadows.
 - **`@plugin "@tailwindcss/forms"`** relies on the tailwindcss-ruby standalone binary bundling the forms plugin. Confirm `tailwindcss:build` succeeds; if not, inline the plugin CSS.
 - **Postgres → SQLite is an engine switch, not just config.** Existing production data needs a real export/import. The legacy Postgres-only migrations must NOT be replayed on SQLite — set up the SQLite databases with `db:schema:load` (not `db:migrate` from zero).
 - **Solid Queue** has no worker under Passenger. There are currently no background jobs, so it is dormant; wire up `bin/jobs` (or a systemd unit) before relying on Active Job in production.
