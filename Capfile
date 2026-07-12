@@ -6,7 +6,6 @@ install_plugin Capistrano::SCM::Git
 # Include tasks from other gems included in your Gemfile
 require "capistrano/rails"
 require "capistrano/rbenv"
-require "capistrano/passenger"
 require "dotenv/load"
 require 'capistrano/honeybadger'
 

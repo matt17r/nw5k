@@ -22,7 +22,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development do
   gem "capistrano", "~> 3.17"
-  gem "capistrano-passenger", "~> 0.2.1"
   gem "capistrano-rails", "~> 1.6"
   gem "capistrano-rbenv", "~> 2.2"
   gem "foreman"
