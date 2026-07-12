@@ -1,6 +1,26 @@
-@import "tom-select/dist/css/tom-select.default.css";
+@import "tailwindcss";
+@import "tom-select.css";
 
-@tailwind base;
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --font-sans: "Inter var", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-nw5k-teal: #28525b;
+
+  --color-nw5k-eggplant-50: #fff5fb;
+  --color-nw5k-eggplant-100: #f2d8e7;
+  --color-nw5k-eggplant-200: #e3bad2;
+  --color-nw5k-eggplant-300: #d1a1bd;
+  --color-nw5k-eggplant-400: #bd8aa8;
+  --color-nw5k-eggplant-500: #a67491;
+  --color-nw5k-eggplant-600: #8c5f7a;
+  --color-nw5k-eggplant-700: #704a60;
+  --color-nw5k-eggplant-800: #523546;
+  --color-nw5k-eggplant-900: #301f29;
+}
 
 @layer base {
   a {
@@ -23,8 +43,6 @@
   }
 }
 
-@tailwind components;
-
 .tooltip {
   @apply invisible absolute;
 }
@@ -39,11 +57,11 @@
 }
 
 .ts-wrapper .ts-control {
-  @apply min-w-full border border-gray-300 rounded px-3 py-2;
+  @apply min-w-full border border-gray-300 rounded-sm px-3 py-2;
 }
 
 .ts-wrapper .ts-dropdown {
-  @apply min-w-full border border-gray-300 rounded shadow-lg;
+  @apply min-w-full border border-gray-300 rounded-sm shadow-lg;
 }
 
 .ts-wrapper .ts-dropdown-content {
@@ -78,5 +96,3 @@
     @apply text-base; /* Prevent iOS zoom on focus */
   }
 }
-
-@tailwind utilities;
