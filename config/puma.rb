@@ -41,3 +41,10 @@ pidfile ENV.fetch("PIDFILE", "tmp/pids/server.pid")
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
+
+# Run the Solid Queue supervisor inside Puma so a single server processes
+# background jobs without a separate worker process. Enabled automatically in
+# production; set SOLID_QUEUE_IN_PUMA to run it in other environments too.
+# (dotenv-rails is not loaded in production, so an env flag alone would never
+# activate there — hence the explicit production check.)
+plugin :solid_queue if ENV.fetch("RAILS_ENV", "development") == "production" || ENV["SOLID_QUEUE_IN_PUMA"]
