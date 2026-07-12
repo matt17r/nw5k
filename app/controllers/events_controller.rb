@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   end
 
   def recalculate_results
-    ResultWithHistoricalData.refresh # This probably belongs in an async after_commit callback with a built in delay, but this will do for now
     redirect_back(fallback_location: results_path)
   end
 

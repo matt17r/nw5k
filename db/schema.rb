@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_17_025928) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  # Custom types defined in this database.
-  # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "distances", ["5km", "2miles"]
-
+ActiveRecord::Schema[8.1].define(version: 2026_07_12_000001) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -72,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_025928) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.enum "distance", default: "5km", null: false, enum_type: "distances"
+    t.string "distance", default: "5km", null: false
     t.index ["event_id"], name: "index_results_on_event_id"
     t.index ["person_id"], name: "index_results_on_person_id"
   end
@@ -92,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_025928) do
   add_foreign_key "volunteers", "events"
   add_foreign_key "volunteers", "people"
 
-  create_view "results_with_historical_data", materialized: true, sql_definition: <<-SQL
+  create_view "results_with_historical_data", sql_definition: <<-SQL
       SELECT results.id,
       results.event_id,
       events.date,
@@ -101,12 +94,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_025928) do
       results.person_id,
       results."time",
           CASE
-              WHEN ((results.person_id IS NOT NULL) AND (events.date = min(events.date) OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW))) THEN true
-              ELSE NULL::boolean
+              WHEN results.person_id IS NOT NULL AND events.date = min(events.date) OVER (PARTITION BY results.person_id ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) THEN 1
+              ELSE NULL
           END AS first_timer,
       min(results."time") OVER (PARTITION BY results.person_id, results.distance ORDER BY events.date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS fastest_time_to_date
-     FROM (results
-       JOIN events ON ((results.event_id = events.id)))
+     FROM results
+       JOIN events ON results.event_id = events.id
     ORDER BY events.date;
   SQL
 end

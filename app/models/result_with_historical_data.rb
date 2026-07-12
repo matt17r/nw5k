@@ -10,10 +10,6 @@ class ResultWithHistoricalData < ApplicationRecord
     true
   end
 
-  def self.refresh
-    Scenic.database.refresh_materialized_view(table_name, concurrently: false, cascade: false)
-  end
-
   def pb?
     return false unless person
     return false if first_timer?
